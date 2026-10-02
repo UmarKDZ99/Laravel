@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -13,9 +14,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/customers', function () {
-    return Inertia::render('customers');
-})->name('customers');
+Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

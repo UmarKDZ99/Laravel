@@ -9,7 +9,19 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Customers() {
+type Customer = {
+    id: number;
+    name: string;
+    email: string | null;
+    phone: string | null;
+    date_of_birth: string | null;
+};
+
+type CustomersPageProps = {
+    customers: { data: Customer[] };
+};
+
+export default function Customers({ customers }: CustomersPageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Customers" />
@@ -30,11 +42,21 @@ export default function Customers() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td colSpan={3} className="px-4 py-8 text-center text-muted-foreground">
-                                    No customers to display.
-                                </td>
-                            </tr>
+                            {customers.data.length === 0 ? (
+                                <tr>
+                                    <td colSpan={3} className="px-4 py-8 text-center text-muted-foreground">
+                                        No customers to display.
+                                    </td>
+                                </tr>
+                            ) : (
+                                customers.data.map((customer) => (
+                                    <tr key={customer.id}>
+                                        <td className="px-4 py-3">{customer.name}</td>
+                                        <td className="px-4 py-3">{customer.date_of_birth}</td>
+                                        <td className="px-4 py-3">{customer.id}</td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
