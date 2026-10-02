@@ -13,5 +13,9 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
+Route::get('/customers', function () {
+    return Inertia::render('customers');
+})->name('customers');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
