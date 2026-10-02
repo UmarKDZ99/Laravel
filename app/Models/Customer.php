@@ -12,6 +12,12 @@ class Customer extends Model
         'name',
         'email',
         'phone',
+        'date_of_birth',
         'address',
+        'city',
+        'state',
+        'postal_code',
+        'country',
+        'notes',
     ];
 }
