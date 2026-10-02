@@ -1,4 +1,5 @@
 import AppLayout from '@/layouts/app-layout';
+import AddCustomerDialog from '@/components/add-customer-dialog';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
@@ -26,15 +27,18 @@ export default function Customers({ customers }: CustomersPageProps) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Customers" />
             <div className="flex flex-1 flex-col gap-4 p-4">
+                <div className="flex justify-end">
+                    <AddCustomerDialog />
+                </div>
                 <div className="overflow-x-auto rounded-lg border">
                     <table className="w-full min-w-[32rem] text-left text-sm">
                         <thead className="border-b bg-muted/50 text-foreground">
                             <tr>
                                 <th scope="col" className="px-4 py-3 font-medium">
-                                    Username
+                                    Name
                                 </th>
                                 <th scope="col" className="px-4 py-3 font-medium">
-                                    Age
+                                    Date of birth
                                 </th>
                                 <th scope="col" className="px-4 py-3 font-medium">
                                     ID
@@ -52,7 +56,7 @@ export default function Customers({ customers }: CustomersPageProps) {
                                 customers.data.map((customer) => (
                                     <tr key={customer.id}>
                                         <td className="px-4 py-3">{customer.name}</td>
-                                        <td className="px-4 py-3">{customer.date_of_birth}</td>
+                                        <td className="px-4 py-3">{customer.date_of_birth ?? 'N/A'}</td>
                                         <td className="px-4 py-3">{customer.id}</td>
                                     </tr>
                                 ))
